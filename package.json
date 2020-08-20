@@ -1,0 +1,41 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "sandby",
+  "main": "index.js",
+  "scripts": {
+    "test": "test index.js",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "backup"
+  },
+  "keywords": [
+    "sandy"
+  ],
+  "author": "sandy",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "googleapis": "^59.0.0",
+    "joi": "^17.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.9.28",
+    "mssql": "^6.2.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "node-localstorage": "^2.1.6",
+    "nodemailer": "^6.4.11",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "path": "^0.12.7"
+  }
+}

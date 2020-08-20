@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modification</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+
+</head>
+<body>
+	<div class='bloc-body'>
+		<div class=" bloc-prim">
+			<div class="form-bloc">
+				<form  class="form-group">
+					<div class="input-title">
+						<h4 class="text text-primary">Modification de profil</h4>
+					</div>
+					
+					<div class="input-bloc">
+						<input placeholder="Votre pseudo" class="input-group file" type="file" name="file" ><img class="prev-img"src="Desert.jpg"width="30"height="30"/>	
+					</div>
+					<div class="input-bloc">
+						<input placeholder="Nom" id="input"class="input-group nom" type="text" name="nom" required>	
+					</div>
+					<div class="input-bloc">
+						<input placeholder="Pseudo"id="input"class="input-group pseudo" type="text" name="pseudo" required>	
+					</div>
+					<div class="input-bloc">
+						<input placeholder="Adresse email"id="input"class="input-group email" type="text" name="email" required>	
+					</div>
+					<div class="input-bloc">
+						<input  placeholder="Date de naissance"id="input"class="input-group birthday" type="date" name="birthday" value="birthday"required>	
+					</div>
+					<div class="input-bloc">
+						<input placeholder="password"id="input" class="input-group password" type="password" name="password" required >	
+					</div>
+
+					<div class="input-bloc">
+						<button class="btn btn-primary modifier">
+							Modifier</button>
+					</div>
+					
+				</form>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+
+<!-- <script type="text/javascript" src="rectangle.js"></script> -->
+<!-- <script type="text/javascript" src="ajax.js"></script> -->
+<script type="text/javascript" src="axios/dist/axios.js"></script>
+<script type="text/javascript">
+"use strict"
+let inputfile=document.querySelector(".file")
+let modifier=document.querySelector(".modifier")
+let prevImg=document.querySelector('.prev-img')
+inputfile.addEventListener("change",function(e){
+	e.preventDefault();
+	// const data ={file:inputfile.files[0]}
+	const data=new FormData()
+	data.append("file",inputfile.files[0])
+	console.log(inputfile.files[0])
+
+	axios.post('http://localhost:8000/upload',data).then(reponse=>{
+		console.log(reponse.data)
+		prevImg.src="http://localhost:8000/image/"+reponse.data
+	})
+})
+ 
+</script>
+</body>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Créer un compte </h1>
+              </div>
+              <form class="user">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user nom" id="exampleFirstName " placeholder="Nom">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user prenom" id="exampleLastName" placeholder="Prenom">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user email" id="exampleFirstName " placeholder="Adresse email">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user pseudo" id="exampleLastName" placeholder="Entrer votre pseudo">
+                  </div>
+                </div>
+                <div class="form-group row"
+                >
+                 <input type="date" class="form-control form-control-user birthday" id="exampleInputPassword" >
+                  
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user password" id="exampleInputPassword" placeholder="Mot de passe">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user password_confirm" id="exampleRepeatPassword" placeholder="Confirmer mot de passe">
+                  </div>
+                </div>
+                <div class="form-group row error"
+                >
+                
+                  
+                </div>
+                <a  style="color:white"class="btn btn-primary btn-user btn-block creer">
+                  Inscrire votre compte
+                </a>
+                <hr>
+                <a  style="color:white"class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> S'inscrire avec Google
+                </a>
+                <a  style="color:white"class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> S'inscrire avec Facebook
+                </a>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="forgot-password.html">Avez-vous oublié votre mot de passe?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="login.html">Avoir déjà un compte? Se connecter!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+  <script type="text/javascript" src="axios/dist/axios.js"></script>
+  <script type="text/javascript">
+    "use strict"
+let errorcompte=document.createElement("span")
+errorcompte.className=" alert alert-danger"
+errorcompte.style.fontSize="14px"
+let divError=document.querySelector(".error")
+let nom=document.querySelector(".nom")
+let prenom=document.querySelector(".prenom")
+let pseudo=document.querySelector(".pseudo")
+let email=document.querySelector(".email")
+let birthday=document.querySelector(".birthday")
+let password=document.querySelector(".password")
+let password_confirm=document.querySelector(".password_confirm")
+let creer=document.querySelector(".creer")
+
+nom.addEventListener("change",function(e){
+  nom.value=e.target.value
+  
+  
+})
+prenom.addEventListener("change",function(e){
+  prenom.value=e.target.value
+  
+  
+})
+pseudo.addEventListener("change",function(e){
+  pseudo.value=e.target.value
+  
+  
+})
+email.addEventListener("change",function(e){
+  email.value=e.target.value
+  
+  
+})
+birthday.addEventListener("change",function(e){
+  birthday.value=e.target.value
+  
+  
+})
+password.addEventListener("change",function(e){
+  password.value=e.target.value
+  
+  
+})
+password_confirm.addEventListener("change",function(e){
+ password_confirm.value=e.target.value
+  
+  
+})
+
+
+creer.addEventListener("click",function(e){
+  e.preventDefault()
+  let data={
+    nom:nom.value,
+    prenom:prenom.value,
+    pseudo:pseudo.value,
+    email:email.value,
+    birthday:birthday.value,
+    password:password.value,
+    password_confirm:password_confirm.value
+  }
+  console.log(data)
+  axios.post("http://localhost:8000/register",data).then(reponse=>{
+    if(reponse.data.error!==null){
+      let exist=reponse.data.error.hasOwnProperty('disponibilité')
+      let existNom=reponse.data.error.hasOwnProperty('nom')
+      let existPrenom=reponse.data.error.hasOwnProperty('prenom')
+      let existPseudo=reponse.data.error.hasOwnProperty('pseudo')
+      let existEmail=reponse.data.error.hasOwnProperty('email')
+      let existBirthday=reponse.data.error.hasOwnProperty('birthday')
+      let existPassword=reponse.data.error.hasOwnProperty('password')
+      let existPasswordConfirm=reponse.data.error.hasOwnProperty('password_confirm')
+      if(exist){
+      errorcompte.innerHTML=reponse.data.error.disponibilité
+       }else if(existNom){
+          errorcompte.innerHTML=reponse.data.error.nom
+          divError.appendChild(errorcompte)
+       }else if(existPrenom){
+          errorcompte.innerHTML=reponse.data.error.prenom
+           divError.appendChild(errorcompte)
+       }else if(existPseudo){
+          errorcompte.innerHTML=reponse.data.error.pseudo
+           divError.appendChild(errorcompte)
+       }else if(existEmail){
+          errorcompte.innerHTML=reponse.data.error.email
+           divError.appendChild(errorcompte)
+       }else if(existBirthday){
+          errorcompte.innerHTML=reponse.data.error.birthday
+           divError.appendChild(errorcompte)
+       }else if(existPassword){
+          errorcompte.innerHTML=reponse.data.error.password
+           divError.appendChild(errorcompte)
+       }else if(existPasswordConfirm){
+          errorcompte.innerHTML=reponse.data.error.password_confirm
+           
+       }
+    }
+    
+    else{
+      errorcompte.innerHTML=""
+      window.location="/login.html"
+    }
+  })
+})
+  </script>
+
+</body>
+
+</html>
