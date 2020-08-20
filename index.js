@@ -8,7 +8,7 @@ let cookieParser=require('cookie-parser')
 const port=8000||process.env.PORT
 let url="mongodb://localhost:27017/db"
 let controller=require('./controller/controller')
-console.log()
+let flash=require("express-flash")
 const protectedRoute=require("./route/dashboard.route")
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err){
 	if(err){

@@ -16,6 +16,8 @@ let userSchema=new mongoose.Schema({
 	solde:Number,
 	jeux:Array,
 	amis:Array,
+	resetPasswordToken: String,
+  	resetPasswordExpires: Date,
 	online:Boolean
 
 })
